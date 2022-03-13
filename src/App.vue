@@ -1,8 +1,14 @@
 <template>
   <v-app>
     <v-main>
-      <NavBar/>
-      <router-view/>
+      <v-row>
+      <div class="col-2">
+        <NavBar />
+      </div>
+      <div class="col-10 pr-16 pt-10">
+        <router-view/>
+      </div>
+      </v-row>
     </v-main>
   </v-app>
 </template>
