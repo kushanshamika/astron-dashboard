@@ -388,6 +388,9 @@
 
 <script>
 
+import axios from "axios";
+import router from "@/router";
+
 export default {
   name: "DesignEndpoint",
   data: () => ({
@@ -448,6 +451,8 @@ export default {
         actions: this.actions
       }
       console.log(JSON.stringify(data, null, 2))
+      axios.put(`/endpoint/${this.$route.params.id}/design`, data)
+          .then(() => router.push({ path: '/endpoints' }))
     },
     addJSONRemoveField(actionIndex){
       this.actions[actionIndex].key.push("");
