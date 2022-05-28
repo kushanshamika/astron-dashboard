@@ -6,7 +6,7 @@ import Axios from "axios";
 
 Vue.config.productionTip = false;
 
-Axios.defaults.baseURL = 'http://localhost:3000/admin';
+Axios.defaults.baseURL = process.env.VUE_APP_ADMIN_ENDPOINT;
 
 new Vue({
   router,

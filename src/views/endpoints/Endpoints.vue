@@ -38,7 +38,7 @@
           small
           class="mr-2"
       >
-        mdi-pencil
+        mdi-delete
       </v-icon>
     </template>
   </v-data-table>
@@ -53,10 +53,10 @@ export default {
     dialog: false,
     dialogDelete: false,
     headers: [
-      { text: 'HTTP Method', value: 'method', sortable: false },
+      { text: 'API Method', value: 'method', sortable: false },
+      { text: 'API ID', value: '_id', sortable: false },
       { text: 'API Slug', value: 'route', sortable: false },
-      { text: 'Created Date', value: 'fat', sortable: false },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: 'Manage', value: 'actions', sortable: false },
     ],
     endpoints: [],
     editedIndex: -1,

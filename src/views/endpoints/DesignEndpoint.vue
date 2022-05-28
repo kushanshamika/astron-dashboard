@@ -30,7 +30,7 @@
                 v-for="(action, actionIndex) in actions"
                 :key="actionIndex"
             >
-              <v-expansion-panel-header>{{action.method}}</v-expansion-panel-header>
+              <v-expansion-panel-header :color="headerColor(action.method)">{{action.method}}</v-expansion-panel-header>
               <v-expansion-panel-content>
 
               <!--        JSONRemove        -->
@@ -43,38 +43,48 @@
                         v-for="(key, i) in action.key"
                         :key="i"
                     >
-                      <v-text-field
-                          v-model="action.key[i]"
-                          label="JSON Field"
-                          required
-                          placeholder="JSON Field"
-                      ></v-text-field>
-                      <v-btn
-                          fab
-                          dark
-                          x-small
-                          color="error"
-                          class="ma-4"
-                          @click="removeJSONRemoveField(actionIndex, i)"
-                          v-if="i>0"
+                      <v-col
+                          cols="12"
+                          md="10"
                       >
-                        <v-icon dark>
-                          mdi-close
-                        </v-icon>
-                      </v-btn>
-                      <v-btn
-                          fab
-                          dark
-                          x-small
-                          color="primary"
-                          class="ma-4"
-                          @click="addJSONRemoveField(actionIndex)"
-                          v-if="i==0"
+                        <v-text-field
+                            v-model="action.key[i]"
+                            label="JSON Field"
+                            required
+                            placeholder="JSON Field"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col
+                          cols="12"
+                          md="2"
                       >
-                        <v-icon dark>
-                          mdi-plus
-                        </v-icon>
-                      </v-btn>
+                        <v-btn
+                            fab
+                            dark
+                            x-small
+                            color="error"
+                            class="ma-4"
+                            @click="removeJSONRemoveField(actionIndex, i)"
+                            v-if="i>0"
+                        >
+                          <v-icon dark>
+                            mdi-close
+                          </v-icon>
+                        </v-btn>
+                        <v-btn
+                            fab
+                            dark
+                            x-small
+                            color="primary"
+                            class="ma-4"
+                            @click="addJSONRemoveField(actionIndex)"
+                            v-if="i==0"
+                        >
+                          <v-icon dark>
+                            mdi-plus
+                          </v-icon>
+                        </v-btn>
+                      </v-col>
                     </v-row>
                   </div>
                   <div class="col-1">
@@ -417,6 +427,21 @@ export default {
     action: null
   }),
   methods: {
+    headerColor(action){
+      let headerColor;
+      switch (action){
+        case "JSONRemove":
+          headerColor = "amber accent-4"
+              break;
+          case "JSONFetch":
+            headerColor = "green accent-4"
+              break;
+            case "JSONPatch":
+              headerColor = "teal accent-4"
+                break;
+      }
+      return headerColor;
+    },
     addAction(){
       const JSONRemove = {
         method: "JSONRemove",
